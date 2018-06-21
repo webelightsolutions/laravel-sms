@@ -1,5 +1,5 @@
 <?php
-namespace Webelightdev\Sms\Facade;
+namespace Webelightdev\LaravelSms\Facade;
 
 use Illuminate\Support\Facades\Facade;
 

@@ -1,5 +1,5 @@
 {
-    "name": "webelightdev/sms",
+    "name": "webelightdev/laravel-sms",
     "description": "package Sms Integration",
     "type": "composer-plugin",
     "license": "MIT",
@@ -15,16 +15,16 @@
     },
     "autoload": {
         "psr-4": {       
-            "Webelightdev\\Sms\\": "src"
+            "Webelightdev\\LaravelSms\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Webelightdev\\Sms\\SmsServiceProvider::class"
+                "Webelightdev\\LaravelSms\\SmsServiceProvider::class"
             ],
             "aliases": {
-                "sms" : "Webelightdev\\Sms\\Facade\\Sms"
+                "sms" : "Webelightdev\\LaravelSms\\Facade\\Sms"
             }
         }
     }

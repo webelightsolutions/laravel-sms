@@ -1,8 +1,8 @@
 <?php
-namespace Webelightdev\Sms\Drivers;
+namespace Webelightdev\LaravelSms\Drivers;
 
 use Twilio\Rest\Client;
-use Webelightdev\Sms\Contract\MasterDriverSms;
+use Webelightdev\LaravelSms\Contract\MasterDriverSms;
 
 class TwilioSms extends MasterDriverSms
 {

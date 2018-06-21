@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "109aea078e344dd7be0b3c0a63f7c4d2",
+    "content-hash": "ba6bd0d83f48258ade24f17d6327f812",
     "packages": [
         {
             "name": "twilio/sdk",
@@ -55,7 +55,7 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,

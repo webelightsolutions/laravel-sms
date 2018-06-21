@@ -39,10 +39,10 @@ return [
     | You can create your own driver if you like and add the
     | config in the drivers array and the class to use for
     | here with the same name. You will have to extend
-    | Tzsk\Sms\Contract\MasterDriver in your driver.
+    | webelightdev\laravelSms\Contract\MasterDriver in your driver.
     |
      */
     'map' => [
-        'twilio_sms' => Webelightdev\Sms\Drivers\TwilioSms::class,
+        'twilio_sms' => Webelightdev\LaravelSms\Drivers\TwilioSms::class,
     ]
 ];

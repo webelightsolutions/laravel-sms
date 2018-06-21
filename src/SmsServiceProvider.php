@@ -1,10 +1,10 @@
 <?php
 
-namespace Webelightdev\Sms;
+namespace Webelightdev\LaravelSms;
 
 use Illuminate\Support\ServiceProvider;
 
-use Webelightdev\Sms\SmsManager;
+use Webelightdev\LaravelSms\SmsManager;
 
 class SmsServiceProvider extends ServiceProvider
 {

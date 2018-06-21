@@ -1,5 +1,5 @@
 <?php
-namespace Webelightdev\Sms\Contract;
+namespace Webelightdev\LaravelSms\Contract;
 
 abstract class MasterDriverSms
 {

@@ -1,5 +1,5 @@
 <?php
-namespace Webelightdev\Sms;
+namespace Webelightdev\LaravelSms;
 
 class SmsManager
 {
@@ -25,11 +25,11 @@ class SmsManager
      * SmsManager constructor.
      */
     public function __construct()
-    {  
+    {
         $this->config = config('sms');
         $this->driver = $this->config['default'];
         $this->settings = $this->config['drivers'][$this->driver];
-        
+
     }
     /**
      * Change the driver on the fly.
@@ -41,7 +41,7 @@ class SmsManager
     {
         $this->driver = $driver;
         $this->settings = $this->config['drivers'][$this->driver];
-        
+
         return $this;
     }
     /**
@@ -53,7 +53,7 @@ class SmsManager
      */
     public function send($message, $callback)
     {
-        
+
         $this->validateParams();
         $class = $this->config['map'][$this->driver];
         $object = new $class($this->settings);
