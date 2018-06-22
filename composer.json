@@ -7,7 +7,7 @@
     "authors": [
         {
             "name": "Saifi Khambhati",
-            "email": "saifi.khambhati786@gmail.com"
+            "email": "saifik@webelight.com"
         }
     ],
     "require": {
@@ -16,16 +16,6 @@
     "autoload": {
         "psr-4": {       
             "Webelightdev\\LaravelSms\\": "src"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Webelightdev\\LaravelSms\\SmsServiceProvider::class"
-            ],
-            "aliases": {
-                "sms" : "Webelightdev\\LaravelSms\\Facade\\Sms"
-            }
         }
     }
 }
