@@ -3,7 +3,6 @@
     "description": "package Sms Integration",
     "type": "composer-plugin",
     "license": "MIT",
-    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Saifi Khambhati",
@@ -27,5 +26,6 @@
                 "Sms" : "Webelightdev\\LaravelSms\\Facade"
             }
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
