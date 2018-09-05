@@ -15,17 +15,7 @@
     },
     "autoload": {
         "psr-4": {       
-            "Webelightdev\\LaravelSms\\": "src"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Webelightdev\\LaravelSms\\SmsServiceProvider"
-            ],
-            "aliases": {
-                "Sms" : "Webelightdev\\LaravelSms\\Facade"
-            }
+            "Webelightdev\\LaravelSms\\": "src/"
         }
     }
 }
