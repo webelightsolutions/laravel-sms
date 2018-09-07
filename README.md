@@ -23,3 +23,7 @@ composer dump-autoload
 ```
 php artisan vendor:publish
 ```
+
+```
+php artisan config:cache
+```

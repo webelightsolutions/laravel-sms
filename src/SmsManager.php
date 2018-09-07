@@ -53,13 +53,18 @@ class SmsManager
      */
     public function send($message, $callback)
     {
+        $smsEnable = config('sms.moduleEnable.sms');
 
-        $this->validateParams();
-        $class = $this->config['map'][$this->driver];
-        $object = new $class($this->settings);
-        $object->message($message);
-        call_user_func($callback, $object);
-        return $object->send();
+        if ($smsEnable) {
+            $this->validateParams();
+            $class = $this->config['map'][$this->driver];
+            $object = new $class($this->settings);
+            $object->message($message);
+            call_user_func($callback, $object);
+            $object->send();
+            return response()->json(['success' => "message sent successfully"], 200);
+        }
+        return response()->json(['message' => $message]);
     }
     /**
      * Validate Parameters before sending.

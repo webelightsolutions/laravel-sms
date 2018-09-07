@@ -27,7 +27,7 @@ return [
             'token' => env('TWILIO_ACCOUNT_TOKEN'),
             'key' => env('TWILIO_API_KEY'),
             'secret' => env('TWILIO_API_SECRET'),
-            'from' => +15592057215,
+            'from' => env('TWILIO_NUMBER'),
         ]
     ],
     /*
@@ -44,5 +44,10 @@ return [
      */
     'map' => [
         'twilio_sms' => Webelightdev\LaravelSms\Drivers\TwilioSms::class,
+    ],
+
+    'moduleEnable' => [
+        'sms' => true,
     ]
+
 ];
