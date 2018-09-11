@@ -1,6 +1,9 @@
 <?php
 namespace Webelightdev\LaravelSms;
 
+use Illuminate\Support\Facades\Queue;
+use Webelightdev\LaravelSms\Jobs\sendSmsJob;
+
 class SmsManager
 {
     /**
@@ -56,12 +59,16 @@ class SmsManager
         $smsEnable = config('sms.moduleEnable.sms');
 
         if ($smsEnable) {
-            $this->validateParams();
+            $this->validateParams();            
             $class = $this->config['map'][$this->driver];
             $object = new $class($this->settings);
             $object->message($message);
+            
             call_user_func($callback, $object);
-            $object->send();
+        
+            foreach (request('contact') as $recipient) {
+               Queue::push(new sendSmsJob($recipient, $message));
+            }
             return response()->json(['success' => "message sent successfully"], 200);
         }
         return response()->json(['message' => $message]);

@@ -22,7 +22,7 @@ abstract class MasterDriverSms
      *
      * @param $settings
      */
-    abstract public function __construct($settings);
+    abstract public function __construct();
 
     /**
      * String or Array of numbers.
@@ -33,7 +33,9 @@ abstract class MasterDriverSms
      */
     public function to($numbers)
     {
+        $numbers = head($numbers);
         $recipients = is_array($numbers) ? $numbers : [$numbers];
+
         $recipients = array_map(function ($item) {
             return trim($item);
         }, array_merge($this->recipients, $recipients));
@@ -43,7 +45,7 @@ abstract class MasterDriverSms
         if (count($this->recipients) < 1) {
             throw new \Exception("Message recipient could not be empty.");
         }
- 
+
         return $this;
     }
 
@@ -70,5 +72,5 @@ abstract class MasterDriverSms
     /**
      * @return object
      */
-    abstract public function send();
+    abstract public function send($mobileNum, $message);
 }

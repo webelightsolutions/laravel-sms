@@ -26,10 +26,12 @@ class TwilioSms extends MasterDriverSms
      * SendSmsInterface constructor.
      * @param $settings object
      */
-    public function __construct($settings)
+    public function __construct()
     {
-        $this->settings = (object) $settings;
-        $this->client = new Client($this->settings->sid, $this->settings->token);
+        $this->config = config('sms');
+        $this->driver = $this->config['default'];
+        $this->twilioSettings = $this->config['drivers'][$this->driver];
+        $this->client = new Client($this->twilioSettings['sid'], $this->twilioSettings['token']);
     }
 
     /**
@@ -37,19 +39,18 @@ class TwilioSms extends MasterDriverSms
      *
      * @return object
      */
-    public function send()
+    public function send($mobileNum, $message)
     {
-        $response = ['status' => true, 'data' =>[]];
-        foreach ($this->recipients as $recipient) {
-            $sms = $this->client->account->messages->create(
-                $recipient,
-                ['from' => $this->settings->from, 'body' => $this->body]
-            );
+        $sms = $this->client->account->messages->create(
+            $mobileNum,
+            [
+                'from' => $this->twilioSettings['from'],
+                'body' => $message
+            ]
+        );
 
-            $response['data'][$recipient] = $this->getSmsResponse($sms);
-        }
-
-        return (object) $response;
+        $response['data'][$mobileNum] = $this->getSmsResponse($sms);
+        return (object)$response;
     }
 
     /**
@@ -72,6 +73,6 @@ class TwilioSms extends MasterDriverSms
             $res[$attribute] = $sms->$attribute;
         }
 
-        return (object) $res;
+        return (object)$res;
     }
 }
