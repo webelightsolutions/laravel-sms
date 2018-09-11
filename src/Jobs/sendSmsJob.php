@@ -15,7 +15,7 @@ class sendSmsJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $contact;
+    protected $mobile_numbers;
     protected $message;
 
     /**
@@ -23,9 +23,9 @@ class sendSmsJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($contact, $message)
+    public function __construct($mobile_numbers, $message)
     {
-        $this->contact = $contact;
+        $this->mobile_numbers = $mobile_numbers;
         $this->message = $message;
     }
 
@@ -39,6 +39,6 @@ class sendSmsJob implements ShouldQueue
         $class = config('sms.map.twilio_sms');
         
         $object = new $class;
-        $object->send($this->contact, $this->message);
+        $object->send($this->mobile_numbers, $this->message);
     }
 }
