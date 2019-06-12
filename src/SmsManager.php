@@ -54,7 +54,7 @@ class SmsManager
      * @param $callback
      * @return mixed
      */
-    public function send($message, $callback)
+    public function send($message, $mobile_numbers, $callback)
     {
         $smsEnable = config('sms.moduleEnable.sms');
 
@@ -66,7 +66,7 @@ class SmsManager
             
             call_user_func($callback, $object);
         
-            foreach (request('mobile_numbers') as $recipient) {
+            foreach ($mobile_numbers as $recipient) {
                Queue::push(new sendSmsJob($recipient, $message));
             }
             return response()->json(['success' => "message sent successfully"], 200);
