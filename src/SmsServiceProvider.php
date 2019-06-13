@@ -29,6 +29,10 @@ class SmsServiceProvider extends ServiceProvider
         $this->app->singleton('twilio_sms', function () {
             return new SmsManager();
         });
+
+        // Migration
+        $this->publishes([__DIR__.'/../database/migrations' => $this->app->databasePath().'/migrations'], 'migrations');
+
     }
 
     /**
