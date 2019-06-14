@@ -18,7 +18,7 @@ class sendSmsJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $mobile_numbers;
+    protected $mobileNumber;
     protected $message;
     protected $logData;
 
@@ -27,9 +27,9 @@ class sendSmsJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($mobile_numbers, $message , $logData)
+    public function __construct($mobileNumber, $message , $logData)
     {
-        $this->mobile_numbers = $mobile_numbers;
+        $this->mobileNumber = $mobileNumber;
         $this->message = $message;
         $this->logData = $logData;
     }
@@ -44,13 +44,13 @@ class sendSmsJob implements ShouldQueue
         $class = config('sms.map.twilio_sms');
 
         $object = new $class;
-        $object->send($this->mobile_numbers, $this->message);
+        $object->send($this->mobileNumber, $this->message);
 
         $data = [
             'message_date'  => Carbon::now(),
-            'mobile_no'     => $this->mobile_numbers,
+            'mobile_no'     => $this->mobileNumber,
             'message_body'   => $this->message,
-            'status'         => config('thunderSchool.mail_status.success'),
+            'status'         => config('sms.status.success'),
             'status_message' => 'No errors.',
         ];
         SmsLog::create(array_merge($data, $this->logData));   
@@ -60,9 +60,9 @@ class sendSmsJob implements ShouldQueue
     {
         $data = [
             'message_date'  => Carbon::now(),
-            'mobile_no'     => $this->mobile_numbers,
+            'mobile_no'     => $this->mobileNumber,
             'message_body'   => $this->message,
-            'status'         => config('thunderSchool.mail_status.failure'),
+            'status'         => config('sms.status.failure'),
             'status_message' => $exception->getMessage(),
         ];
         SmsLog::create(array_merge($data, $this->logData));
