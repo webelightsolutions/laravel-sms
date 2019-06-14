@@ -46,8 +46,11 @@ return [
         'twilio_sms' => Webelightdev\LaravelSms\Drivers\TwilioSms::class,
     ],
 
-    'moduleEnable' => [
-        'sms' => true,
-    ]
+    'enable' => true,
+
+    'status' => [
+        'success' => 0,
+        'failure' => 1,
+    ],
 
 ];
